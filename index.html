@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Catalogue Links</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+       .center-box {
+      width: 30%;
+      margin: 2em auto;
+      padding: 2em;
+      text-align: center;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      margin-top: 2em;
+      flex-wrap: wrap;
+    }
+
+    .catalogue-button {
+      padding: 1em 2em;
+      font-size: 1em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .catalogue-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="catalogue-title">Catalogue</h1>
+  <div class="fade-wrapper">
+  <div class="center-box">
+    <h1>Choose Your Division:</h1>
+    <div class="button-group">
+      <button class="catalogue-button" onclick="window.location.href='beauty.html'">Beauty</button>
+      <button class="catalogue-button" onclick="window.location.href='mp-nutrition.html'">MP Nutrition</button>
+      <button class="catalogue-button" onclick="window.location.href='mp-clothing.html'">MP Clothing & Accessories</button>
+    </div>
+  </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

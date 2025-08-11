@@ -1,0 +1,224 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  background-color: #f2f2f2; /* off-white/grey */
+  background-image: url('EDIT%20Logo.png'); /* Replace with your actual logo file name */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 800px; /* Adjust size as needed */
+  opacity: 1; /* Keep full page visible */
+}
+
+.catalogue-logo {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; /* Adjust size as needed */
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+
+.catalogue-title {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 65px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  text-align: center;
+  z-index: 1; /* Ensures it's above background but below interactive elements */
+  opacity: 1 !important;
+  transition: none !important;
+} 
+
+
+  
+.center-box {
+  width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.center-box h1 {
+  margin-bottom: 20px;
+}
+
+.center-box button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.center-box button:hover {
+  background-color: #0056b3;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin: 40px;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar li {
+  margin: 8px 0;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  width: 100%;
+  min-width: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table caption {
+  caption-side: top;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  color: #333;
+}
+
+.styled-table thead tr {
+  background-color: #007bff;
+  color: white;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  border: 1px solid #dddddd;
+}
+
+.styled-table tbody tr {
+  background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #e6f7ff;
+}
+
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Changed from left to right */
+  text-decoration: none;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+/* 1. Animated gradient overlay */
+/*body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(130deg, #c9d6ff, #e2e2e2, #fbc2eb);
+  background-size: 600% 600%;
+  animation: gradientShift 20s ease infinite;
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+} */
+
+/* 2. Glassmorphism effect */
+.center-box, .sidebar {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 3. Button hover animation */
+.catalogue-button {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.catalogue-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Apply fade only to wrapper */
+.fade-wrapper {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
