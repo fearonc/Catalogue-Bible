@@ -81,3 +81,19 @@ window.addEventListener('load', () => {
     fadeWrapper.style.opacity = '1';
   }
 });
+
+
+
+
+// Open Tetris
+document.getElementById('tetris-bubble').addEventListener('click', function() {
+  document.getElementById('tetris-modal').style.display = 'block';
+  // Load Tetris only when clicked to save performance
+  document.getElementById('tetris-frame').src = "https://tetris.com/play-tetris";
+});
+
+// Close Tetris
+function closeTetris() {
+  document.getElementById('tetris-modal').style.display = 'none';
+  document.getElementById('tetris-frame').src = ""; // stop the game
+}
