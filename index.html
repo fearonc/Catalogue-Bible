@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Links</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      margin: 5% auto;
+      padding: 2em;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      width: 50%;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+
+    .close-button {
+      float: right;
+      font-size: 1.5em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      display: none;
+      font-style: italic;
+      margin-top: 0.5em;
+    }
+
+    .faq-item:nth-child(even) {
+      background-color: #f0f0f0;
+    }
+
+    .faq-item {
+      padding: 1em;
+      margin-bottom: 1em;
+      border-radius: 8px;
+    }
+
+    .label-q {
+      color: #c1e5f5;
+      font-weight: bold;
+    }
+
+    .label-a {
+      color: green;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-button">← Back to Home</a>
+
+	
+  <h1 class="catalogue-title">Catalogue</h1>
+	<div class="fade-wrapper">
+  <div class="sidebar">
+    <h2>Files</h2>
+    <ul>
+      <li><a href="https://hutgroupnorthwich.sharepoint.com/:f:/r/sites/NewLineForms/Shared%20Documents/Health%20%26%20Beauty?csf=1&web=1&e=V8ZEL1" target="_blank" rel="noopener">Beauty NLF</a></li>
+      <li><a href="https://hutgroupnorthwich.sharepoint.com/:x:/r/sites/NewLineForms/Shared%20Documents/Health%20%26%20Beauty/Linked%20SKU%20Template.xlsx?d=wc62748fe461c49dd8a18a9c186c8a4e5&csf=1&web=1&e=5cLPKD" target="_blank">Linking SKUs</a></li>
+    </ul>
+    <br/><h2>Services</h2>
+    <ul>
+      <li><a href="https://servicedeskplus.thg.com/app/itdesk/ui/requests/add?reqTemplate=4489000000430918" target="_blank">Create New SKUs</a></li>
+      <li><a href="https://servicedeskplus.thg.com/app/itdesk/ui/requests/add?reqTemplate=4489000000770135" target="_blank">Update Existing SKUs</a></li>
+    </ul>
+    <br/><h2>FAQ</h2>
+    <ul>
+      <li><a href="#" onclick="openFAQ(); return false;">View FAQ</a></li>
+    </ul>
+    <br/><h2>Useful Contacts</h2>
+<ul>
+  <li><a href="#" onclick="openModal('catalogueModal'); return false;">Catalogue</a></li>
+  <li><a href="#" onclick="openModal('contentModal'); return false;">Supplier Content</a></li>
+  <li><a href="#" onclick="openModal('hsCodesModal'); return false;">HS Codes</a></li>
+	<li><a href="#" onclick="openModal('solutionsModal'); return false;">Solutions</a></li>
+</ul>
+  </div>
+
+  <!-- Modal FAQ Content -->
+  <div id="faqModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeFAQ()">&times;</span>
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> What is the difference between Master/Child and Linked SKUs?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> Master/Child (Complex SKUs) = A single product displayed on list pages using the master SKU, with the child SKUs creating the drop down options on the PDP. Child SKUs have barcodes and hold stock in the warehouse, Master SKUs have no barcode and are purely for displaying the PDP on-site.<br/><br/>Linked SKUs = 2 or more completely separate SKUs which each appear individually on list pages, but have a “link” to the other SKUs within the linked group. Linked SKUs can be 2 or more Non-Complex SKUs, or 2 or more Master SKUs.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> Can I have more than one barcode on a SKU?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> Yes! We can load multiple barcodes to one THG SKU. The Catalogue and Warehouse systems are designed to work this way.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> Why is a Product not displaying on site?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> This can be a number of reasons:
+          <ul>
+            <li>It’s not assigned to site in Catalogue</li>
+            <li>The Availability in TeePee hasn’t been set correctly</li>
+            <li>The product has no stock and the site assignment is on “Show when available”</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> Why is a product not on a list page?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> This will depend on how the list page is setup in TeePee. It will be an issue of the SKU not having the correct Attribution that the list page (DDL) is looking for.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> How do I update a brand Key?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> We don’t deal with brand Key’s directly. We require the brand name to load, which will have its own key assigned in the system, so only provide the brand itself, not a key.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> How can I search for an existing SKU?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> You can use Catalogue UI to search for existing SKUs, Title, Barcode, Catalogue numbers.<br/>Don’t use Tabernus to search for products as it is outdated and unreliable.</div>
+      </div>
+    </div>
+  </div>
+		
+<!-- Catalogue Contacts Modal -->
+<div id="catalogueModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal('catalogueModal')">&times;</span>
+    <table class="styled-table">
+      <caption>Catalogue Contacts</caption>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>Mike Woodhall</td>
+			<td>Head of Catalogue</td>
+			<td>michael.woodhall@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Katherine Peters</td>
+			<td>Senior Catalogue Executive(Beauty/LUX)</td>
+			<td>katherine.peters@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>George Mclean</td>
+			<td>Senior Catalogue Executive(Ingenuity)</td>
+			<td>george.mclean@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Connor Fearon</td>
+			<td>Senior Catalogue Executive(My Protein/Beauty/LUX)</td>
+			<td>connor.fearon@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Alyona Beevers</td>
+			<td>Catalogue Executive(Beauty/LUX)</td>
+			<td>alyona.beevers@thgingenuity.com<</td>	
+		</tr>
+		
+	</tbody>
+</table>
+  </div>
+</div>
+
+<!-- Content Contacts Modal -->
+<div id="contentModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal('contentModal')">&times;</span>
+    <table class="styled-table">
+      <caption>Supplier Content Contacts - suppliercontent@thgingenuity.com</caption>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>Jemma Taylor</td>
+			<td>Head of Supplier Content</td>
+			<td>jemma.taylor@thgingenuity.com</td>	
+		</tr>
+	</tbody>
+</table>
+  </div>
+</div>
+
+
+
+<!-- HS Codes Contacts Modal -->
+<div id="hsCodesModal" class="modal">
+<div class="modal-content">
+    <span class="close-button" onclick="closeModal('hsCodesModal')">&times;</span>
+    <table class="styled-table">
+      <caption>HS Codes Contacts - hs.codes@thehutgroup.com</caption>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>Zoe Scott</td>
+			<td>Customs Classification Officer</td>
+			<td>zoe.scott@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Dale Walker</td>
+			<td>Dangerous Goods Manager</td>
+			<td>dale.walker@thgingenuity.com</td>	
+		</tr>		
+	</tbody>
+</table>
+  </div>
+</div>
+
+<!-- Solutions Contacts Modal -->
+<div id="solutionsModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal('solutionsModal')">&times;</span>
+    <table class="styled-table">
+      <caption>Solutions - dl-solutions@thehutgroup.com</caption>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>Dennis Lund</td>
+			<td>Lead Solutions Consultant</td>
+			<td>dennis.lund@thgingenuity.com</td>	
+		</tr>
+		
+	</tbody>
+</table>
+  </div>
+</div>
+
+
+	</div>
+	<script src="script.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
