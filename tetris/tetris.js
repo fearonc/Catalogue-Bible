@@ -18,13 +18,13 @@ const COLORS = [
 // Tetromino shapes
 const SHAPES = [
   [],
-  [[1,1,1,1]], // I
-  [[2,0,0],[2,2,2]], // J
-  [[0,0,3],[3,3,3]], // L
-  [[4,4],[4,4]],     // O
-  [[0,5,5],[5,5,0]], // S
-  [[0,6,0],[6,6,6]], // T
-  [[7,7,0],[0,7,7]]  // Z
+  [[1,1,1,1]],         // I
+  [[2,0,0],[2,2,2]],   // J
+  [[0,0,3],[3,3,3]],   // L
+  [[4,4],[4,4]],       // O
+  [[0,5,5],[5,5,0]],   // S
+  [[0,6,0],[6,6,6]],   // T
+  [[7,7,0],[0,7,7]]    // Z
 ];
 
 // Create empty matrix for the board
@@ -118,6 +118,9 @@ let currentPiece;
 let dropCounter = 0;
 let dropInterval = 1000;
 let lastTime = 0;
+let dropFast = false;
+let animationFrameId = null;
+let isPaused = false;
 
 // Initialize or reset the game
 function initGame() {
@@ -151,7 +154,6 @@ function drop() {
     clearLines();
     currentPiece = createPiece();
     if (collides(board, [currentPiece.matrix, currentPiece.pos])) {
-      // Game over: reset game for now
       alert("Game Over! Resetting...");
       initGame();
     }
@@ -178,7 +180,8 @@ function rotatePiece() {
     currentPiece.pos.x += offset;
     offset = -(offset + (offset > 0 ? 1 : -1));
     if (offset > currentPiece.matrix[0].length) {
-      currentPiece.matrix = rotate(rotate(rotate(currentPiece.matrix))); // rotate back 3 times = 1 ccw
+      // rotate back ccw (3 clockwise rotations)
+      currentPiece.matrix = rotate(rotate(rotate(currentPiece.matrix)));
       currentPiece.pos.x = posX;
       return;
     }
@@ -186,11 +189,8 @@ function rotatePiece() {
 }
 
 // Game loop
-let animationFrameId = null;
-let isPaused = false;
-
 function update(time = 0) {
-  if (isPaused) return; // skip updates if paused
+  if (isPaused) return;
 
   const deltaTime = time - lastTime;
   lastTime = time;
@@ -218,8 +218,8 @@ function pauseGame() {
 function resumeGame() {
   if (!isPaused) return;
   isPaused = false;
-  lastTime = 0; // reset lastTime to avoid huge delta on resume
-  dropCounter = 0; // reset drop counter
+  lastTime = 0;
+  dropCounter = 0;
   update();
 }
 
@@ -234,11 +234,6 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('blur', pauseGame);
 window.addEventListener('focus', resumeGame);
 
-update();
-
-
-
-// Key handling
 document.addEventListener('keydown', event => {
   if (event.repeat) return;
   if (event.key === 'ArrowLeft') {
@@ -258,7 +253,6 @@ document.addEventListener('keyup', event => {
   }
 });
 
-// Reset button handler
 document.getElementById('resetBtn').addEventListener('click', () => {
   initGame();
 });
@@ -266,4 +260,3 @@ document.getElementById('resetBtn').addEventListener('click', () => {
 // Start game initially
 initGame();
 update();
-
