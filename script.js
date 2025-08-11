@@ -85,15 +85,22 @@ window.addEventListener('load', () => {
 
 
 
-// Open Tetris
-document.getElementById('tetris-bubble').addEventListener('click', function() {
-  document.getElementById('tetris-modal').style.display = 'block';
-  // Load Tetris only when clicked to save performance
-  document.getElementById('tetris-frame').src = "https://tetris.com/play-tetris";
+function openTetris() {
+    document.getElementById("tetris-modal").style.display = "block";
+}
+
+function closeTetris() {
+    document.getElementById("tetris-modal").style.display = "none";
+}
+
+// When the bubble is clicked, open the game
+document.getElementById("tetris-bubble").addEventListener("click", openTetris);
+
+// Optional: Close if clicking outside modal
+window.addEventListener("click", function(event) {
+    let modal = document.getElementById("tetris-modal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
 });
 
-// Close Tetris
-function closeTetris() {
-  document.getElementById('tetris-modal').style.display = 'none';
-  document.getElementById('tetris-frame').src = ""; // stop the game
-}
