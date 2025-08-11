@@ -101,12 +101,13 @@ function clearLines() {
 
 // Rotate matrix clockwise
 function rotate(matrix) {
-  const N = matrix.length;
+  const rows = matrix.length;
+  const cols = matrix[0].length;
   const result = [];
-  for (let i = 0; i < N; i++) {
-    result.push([]);
-    for (let j = 0; j < N; j++) {
-      result[i][j] = matrix[N - j - 1][i] || 0;
+  for (let x = 0; x < cols; x++) {
+    result[x] = [];
+    for (let y = rows - 1; y >= 0; y--) {
+      result[x][rows - 1 - y] = matrix[y][x] || 0;
     }
   }
   return result;
@@ -185,18 +186,57 @@ function rotatePiece() {
 }
 
 // Game loop
+let animationFrameId = null;
+let isPaused = false;
+
 function update(time = 0) {
+  if (isPaused) return; // skip updates if paused
+
   const deltaTime = time - lastTime;
   lastTime = time;
 
   dropCounter += deltaTime;
-  if (dropCounter > dropInterval) {
+
+  const interval = dropFast ? 50 : dropInterval;
+
+  if (dropCounter > interval) {
     drop();
   }
 
   draw();
-  requestAnimationFrame(update);
+  animationFrameId = requestAnimationFrame(update);
 }
+
+function pauseGame() {
+  isPaused = true;
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
+  }
+}
+
+function resumeGame() {
+  if (!isPaused) return;
+  isPaused = false;
+  lastTime = 0; // reset lastTime to avoid huge delta on resume
+  dropCounter = 0; // reset drop counter
+  update();
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    pauseGame();
+  } else {
+    resumeGame();
+  }
+});
+
+window.addEventListener('blur', pauseGame);
+window.addEventListener('focus', resumeGame);
+
+update();
+
+
 
 // Key handling
 document.addEventListener('keydown', event => {
@@ -206,9 +246,15 @@ document.addEventListener('keydown', event => {
   } else if (event.key === 'ArrowRight') {
     move(1);
   } else if (event.key === 'ArrowDown') {
-    drop();
+    dropFast = true;
   } else if (event.key === 'ArrowUp') {
     rotatePiece();
+  }
+});
+
+document.addEventListener('keyup', event => {
+  if (event.key === 'ArrowDown') {
+    dropFast = false;
   }
 });
 
@@ -220,3 +266,4 @@ document.getElementById('resetBtn').addEventListener('click', () => {
 // Start game initially
 initGame();
 update();
+
