@@ -73,11 +73,13 @@ body {
 
 .sidebar-container {
   display: flex;
-  flex-direction: row;   /* Place them side by side */
-  justify-content: flex-start; /* Align to left, change to center if needed */
-  gap: 10px;             /* Space between them */
-  margin: 20px;          /* Space around the whole row */
+  flex-direction: row;   /* Keep them in a row */
+  justify-content: center; /* <-- Centers them horizontally */
+  gap: 20px;             /* Space between them */
+  margin: 40px;          /* Space around the whole row */
+  flex-wrap: wrap;       /* Optional: lets them wrap on smaller screens */
 }
+
 
 .sidebar, .sidebar2, .sidebar3, .sidebar4 {
   width: 250px;
@@ -249,6 +251,7 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
