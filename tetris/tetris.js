@@ -253,9 +253,15 @@ document.addEventListener('keyup', event => {
   }
 });
 
+document.getElementById('startBtn').addEventListener('click', () => {
+  initGame();
+  update();
+});
+
 document.getElementById('resetBtn').addEventListener('click', () => {
   initGame();
 });
+
 
 
 
