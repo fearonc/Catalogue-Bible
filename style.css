@@ -79,6 +79,8 @@ body {
 }
 
 .sidebar, .sidebar2, .sidebar3, .sidebar4 {
+  position: relative;  /* Add this */
+  z-index: 2;          /* Higher than 1 */
   width: 250px;
   flex-shrink: 0;        /* Prevent shrinking */
   padding: 20px;
@@ -218,3 +220,4 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
