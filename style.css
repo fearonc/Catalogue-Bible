@@ -79,6 +79,19 @@ body {
   margin: 40px;
 }
 
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar li {
+  margin: 8px 0;
+}
+
 .sidebar2 {
   width: 250px;
   padding: 20px;
@@ -86,6 +99,19 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   margin: 40px;
+}
+
+.sidebar2 h2 {
+  margin-top: 0;
+}
+
+.sidebar2 ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar2 li {
+  margin: 8px 0;
 }
 
 .sidebar3 {
@@ -97,6 +123,19 @@ body {
   margin: 40px;
 }
 
+.sidebar3 h2 {
+  margin-top: 0;
+}
+
+.sidebar3 ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar3 li {
+  margin: 8px 0;
+}
+
 .sidebar4 {
   width: 250px;
   padding: 20px;
@@ -106,16 +145,16 @@ body {
   margin: 40px;
 }
 
-.sidebar h2 {
+.sidebar4 h2 {
   margin-top: 0;
 }
 
-.sidebar ul {
+.sidebar4 ul {
   list-style: none;
   padding-left: 0;
 }
 
-.sidebar li {
+.sidebar4 li {
   margin: 8px 0;
 }
 
@@ -267,6 +306,7 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
