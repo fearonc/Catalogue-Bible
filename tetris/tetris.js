@@ -15,7 +15,6 @@ const COLORS = [
   'red'      // Z
 ];
 
-// Tetromino shapes
 const SHAPES = [
   [],
   [[1,1,1,1]],         // I
@@ -27,7 +26,12 @@ const SHAPES = [
   [[7,7,0],[0,7,7]]    // Z
 ];
 
-// Create empty matrix for the board
+// Score variables
+let score = 0;
+let level = 1;
+let linesCleared = 0;
+
+// Create empty board
 function createMatrix(w, h) {
   const matrix = [];
   while (h--) {
@@ -36,7 +40,6 @@ function createMatrix(w, h) {
   return matrix;
 }
 
-// Draw a single block
 function drawBlock(x, y, colorIndex) {
   ctx.fillStyle = COLORS[colorIndex];
   ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
@@ -45,7 +48,6 @@ function drawBlock(x, y, colorIndex) {
   ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 }
 
-// Draw the whole board
 function drawMatrix(matrix, offset) {
   matrix.forEach((row, y) => {
     row.forEach((value, x) => {
@@ -56,7 +58,6 @@ function drawMatrix(matrix, offset) {
   });
 }
 
-// Check collision with board edges or filled cells
 function collides(board, piece) {
   const [matrix, offset] = piece;
   for (let y = 0; y < matrix.length; y++) {
@@ -70,7 +71,6 @@ function collides(board, piece) {
   return false;
 }
 
-// Merge piece into board
 function merge(board, piece) {
   const [matrix, offset] = piece;
   matrix.forEach((row, y) => {
@@ -82,9 +82,8 @@ function merge(board, piece) {
   });
 }
 
-// Clear full lines
 function clearLines() {
-  let rowCount = 1;
+  let rowCount = 0;
   outer: for (let y = board.length - 1; y >= 0; y--) {
     for (let x = 0; x < board[y].length; x++) {
       if (board[y][x] === 0) {
@@ -94,12 +93,19 @@ function clearLines() {
     const row = board.splice(y, 1)[0].fill(0);
     board.unshift(row);
     y++;
-    // Could add scoring here using rowCount multiplier
-    rowCount *= 2;
+    rowCount++;
+  }
+
+  if (rowCount > 0) {
+    score += rowCount * 100 * level;
+    linesCleared += rowCount;
+    if (linesCleared >= level * 10) {
+      level++;
+      dropInterval = Math.max(100, dropInterval - 100);
+    }
   }
 }
 
-// Rotate matrix clockwise
 function rotate(matrix) {
   const rows = matrix.length;
   const cols = matrix[0].length;
@@ -122,30 +128,36 @@ let dropFast = false;
 let animationFrameId = null;
 let isPaused = false;
 
-// Initialize or reset the game
 function initGame() {
   board = createMatrix(COLS, ROWS);
+  score = 0;
+  level = 1;
+  linesCleared = 0;
   currentPiece = createPiece();
   dropCounter = 0;
   lastTime = 0;
   draw();
 }
 
-// Create random piece with starting position
 function createPiece() {
   const typeId = (Math.floor(Math.random() * (SHAPES.length - 1)) + 1);
   const matrix = SHAPES[typeId].map(row => row.slice());
   return { matrix, pos: { x: Math.floor(COLS / 2) - Math.ceil(matrix[0].length / 2), y: 0 } };
 }
 
-// Draw everything
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw score info at the top center
+  ctx.font = '16px Arial';
+  ctx.fillStyle = '#fff';
+  ctx.textAlign = 'center';
+  ctx.fillText(`Score: ${score}   Level: ${level}   Lines: ${linesCleared}`, canvas.width / 2, 20);
+
   drawMatrix(board, { x:0, y:0 });
   drawMatrix(currentPiece.matrix, currentPiece.pos);
 }
 
-// Drop the piece by one row
 function drop() {
   currentPiece.pos.y++;
   if (collides(board, [currentPiece.matrix, currentPiece.pos])) {
@@ -161,7 +173,6 @@ function drop() {
   dropCounter = 0;
 }
 
-// Move piece left or right
 function move(dir) {
   currentPiece.pos.x += dir;
   if (collides(board, [currentPiece.matrix, currentPiece.pos])) {
@@ -169,7 +180,6 @@ function move(dir) {
   }
 }
 
-// Rotate piece with collision check and wall kicks
 function rotatePiece() {
   const rotated = rotate(currentPiece.matrix);
   const posX = currentPiece.pos.x;
@@ -180,7 +190,6 @@ function rotatePiece() {
     currentPiece.pos.x += offset;
     offset = -(offset + (offset > 0 ? 1 : -1));
     if (offset > currentPiece.matrix[0].length) {
-      // rotate back ccw (3 clockwise rotations)
       currentPiece.matrix = rotate(rotate(rotate(currentPiece.matrix)));
       currentPiece.pos.x = posX;
       return;
@@ -188,7 +197,6 @@ function rotatePiece() {
   }
 }
 
-// Game loop
 function update(time = 0) {
   if (isPaused) return;
 
@@ -257,6 +265,5 @@ document.getElementById('resetBtn').addEventListener('click', () => {
   initGame();
 });
 
-// Start game initially
 initGame();
 update();
