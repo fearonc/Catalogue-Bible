@@ -79,93 +79,27 @@ body {
   margin: 20px;          /* Space around the whole row */
 }
 
-.sidebar {
+.sidebar, .sidebar2, .sidebar3, .sidebar4 {
   width: 250px;
   padding: 20px;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  margin: 40px;
 }
 
-.sidebar h2 {
+.sidebar h2, .sidebar2 h2, .sidebar3 h2, .sidebar4 h2 {
   margin-top: 0;
 }
 
-.sidebar ul {
+.sidebar ul, .sidebar2 ul, .sidebar3 ul, .sidebar4 ul {
   list-style: none;
   padding-left: 0;
 }
 
-.sidebar li {
+.sidebar li, .sidebar2 li, .sidebar3 li, .sidebar4 li {
   margin: 8px 0;
 }
 
-.sidebar2 {
-  width: 250px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  margin: 40px;
-}
-
-.sidebar2 h2 {
-  margin-top: 0;
-}
-
-.sidebar2 ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.sidebar2 li {
-  margin: 8px 0;
-}
-
-.sidebar3 {
-  width: 250px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  margin: 40px;
-}
-
-.sidebar3 h2 {
-  margin-top: 0;
-}
-
-.sidebar3 ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.sidebar3 li {
-  margin: 8px 0;
-}
-
-.sidebar4 {
-  width: 250px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  margin: 40px;
-}
-
-.sidebar4 h2 {
-  margin-top: 0;
-}
-
-.sidebar4 ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.sidebar4 li {
-  margin: 8px 0;
-}
 
 .styled-table {
   border-collapse: collapse;
@@ -315,6 +249,7 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
