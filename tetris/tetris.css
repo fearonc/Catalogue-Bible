@@ -1,62 +1,13 @@
-/* Reset default margin and padding, and full height */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: #222;
-  color: #eee;
-  font-family: monospace, sans-serif;
-  overflow: hidden; /* Prevent scrollbars */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-/* Main container for game layout */
-#game-container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  /* ensure it doesn't overflow */
-  max-width: 100vw;
-  max-height: 100vh;
-}
-
-/* Canvas styling */
-canvas {
+body {
   background: #000;
-  border: 2px solid #444;
-  display: block;
-}
-
-/* Scoreboard styling */
-#scoreboard {
-  font-size: 20px;
-  color: #eee;
-  font-family: monospace;
-  user-select: none;
-}
-
-/* Next piece container */
-#next-piece-container {
-  text-align: center;
-  font-family: monospace;
-  color: #eee;
-  user-select: none;
-}
-
-button {
-  margin-top: 1em;
-  padding: 0.5em 1em;
-  font-size: 1em;
-  cursor: pointer;
-  border-radius: 5px;
-  border: none;
-  background: #0af;
   color: white;
+  text-align: center;
+  font-family: sans-serif;
 }
-
-button:hover {
-  background: #08c;
+h1 {
+  margin: 10px 0;
+}
+canvas {
+  border: 2px solid white;
+  background: black;
 }
