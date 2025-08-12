@@ -7,7 +7,6 @@ body {
   font-family: Arial, sans-serif;
   height: 100%;
   background-color: #f2f2f2; /* off-white/grey */
-  background-image: url('EDIT%20Logo.png'); /* Replace with your actual logo file name */
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 800px; /* Adjust size as needed */
@@ -246,5 +245,6 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
