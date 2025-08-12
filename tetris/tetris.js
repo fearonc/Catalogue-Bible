@@ -227,10 +227,10 @@ document.addEventListener('keydown', event => {
 
 document.addEventListener('keyup', event => {
   if ((event.code === 'ArrowLeft' && moveDirection === -1) ||
-      (event.code === 'ArrowRight' && moveDirection === 1)) {
+      (event.code === 'ArrowRight' && moveDirection === 1) ||
+      (event.code === 'ArrowDown' && moveDirection === 2)) {
     clearInterval(moveInterval);
     moveInterval = null;
     moveDirection = 0;
   }
 });
-
