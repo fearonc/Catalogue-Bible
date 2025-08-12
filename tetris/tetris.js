@@ -196,6 +196,10 @@ let moveInterval = null;
 let moveDirection = 0;
 
 document.addEventListener('keydown', event => {
+  if (['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'].includes(event.code)) {
+    event.preventDefault(); // Prevent scrolling on arrow keys
+  }
+
   if (event.code === 'ArrowLeft') {
     if (moveDirection !== -1) {
       moveDirection = -1;
@@ -209,7 +213,11 @@ document.addEventListener('keydown', event => {
       moveInterval = setInterval(() => playerMove(1), 100);
     }
   } else if (event.code === 'ArrowDown') {
-    playerDrop();
+    if (moveDirection !== 2) {
+      moveDirection = 2;
+      playerDrop();
+      moveInterval = setInterval(() => playerDrop(), 50);
+    }
   } else if (event.code === 'KeyQ') {
     playerRotate(-1);
   } else if (event.code === 'KeyW') {
@@ -225,3 +233,4 @@ document.addEventListener('keyup', event => {
     moveDirection = 0;
   }
 });
+
