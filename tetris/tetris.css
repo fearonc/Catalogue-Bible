@@ -11,3 +11,14 @@ canvas {
   border: 2px solid white;
   background: black;
 }
+
+#scoreboard {
+  font-family: sans-serif;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+#next-piece-container {
+  margin-top: 10px;
+  font-family: sans-serif;
+}
