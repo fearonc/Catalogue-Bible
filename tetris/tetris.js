@@ -15,6 +15,7 @@ const COLORS = [
   'red'      // Z
 ];
 
+// Tetromino shapes
 const SHAPES = [
   [],
   [[1,1,1,1]],         // I
@@ -26,12 +27,7 @@ const SHAPES = [
   [[7,7,0],[0,7,7]]    // Z
 ];
 
-// Score variables
-let score = 0;
-let level = 1;
-let linesCleared = 0;
-
-// Create empty board
+// Create empty matrix for the board
 function createMatrix(w, h) {
   const matrix = [];
   while (h--) {
@@ -40,6 +36,7 @@ function createMatrix(w, h) {
   return matrix;
 }
 
+// Draw a single block
 function drawBlock(x, y, colorIndex) {
   ctx.fillStyle = COLORS[colorIndex];
   ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
@@ -48,6 +45,7 @@ function drawBlock(x, y, colorIndex) {
   ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 }
 
+// Draw the whole board
 function drawMatrix(matrix, offset) {
   matrix.forEach((row, y) => {
     row.forEach((value, x) => {
@@ -58,6 +56,7 @@ function drawMatrix(matrix, offset) {
   });
 }
 
+// Check collision with board edges or filled cells
 function collides(board, piece) {
   const [matrix, offset] = piece;
   for (let y = 0; y < matrix.length; y++) {
@@ -71,6 +70,7 @@ function collides(board, piece) {
   return false;
 }
 
+// Merge piece into board
 function merge(board, piece) {
   const [matrix, offset] = piece;
   matrix.forEach((row, y) => {
@@ -82,8 +82,9 @@ function merge(board, piece) {
   });
 }
 
+// Clear full lines
 function clearLines() {
-  let rowCount = 0;
+  let rowCount = 1;
   outer: for (let y = board.length - 1; y >= 0; y--) {
     for (let x = 0; x < board[y].length; x++) {
       if (board[y][x] === 0) {
@@ -93,19 +94,11 @@ function clearLines() {
     const row = board.splice(y, 1)[0].fill(0);
     board.unshift(row);
     y++;
-    rowCount++;
-  }
-
-  if (rowCount > 0) {
-    score += rowCount * 100 * level;
-    linesCleared += rowCount;
-    if (linesCleared >= level * 10) {
-      level++;
-      dropInterval = Math.max(100, dropInterval - 100);
-    }
+    rowCount *= 2;
   }
 }
 
+// Rotate matrix clockwise
 function rotate(matrix) {
   const rows = matrix.length;
   const cols = matrix[0].length;
@@ -125,39 +118,37 @@ let dropCounter = 0;
 let dropInterval = 1000;
 let lastTime = 0;
 let dropFast = false;
+let moveLeft = false;
+let moveRight = false;
+let moveInterval = 100; // ms between repeated moves
+let lastMoveTime = 0;
 let animationFrameId = null;
 let isPaused = false;
 
+// Initialize or reset the game
 function initGame() {
   board = createMatrix(COLS, ROWS);
-  score = 0;
-  level = 1;
-  linesCleared = 0;
   currentPiece = createPiece();
   dropCounter = 0;
   lastTime = 0;
   draw();
 }
 
+// Create random piece with starting position
 function createPiece() {
   const typeId = (Math.floor(Math.random() * (SHAPES.length - 1)) + 1);
   const matrix = SHAPES[typeId].map(row => row.slice());
   return { matrix, pos: { x: Math.floor(COLS / 2) - Math.ceil(matrix[0].length / 2), y: 0 } };
 }
 
+// Draw everything
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Draw score info at the top center
-  ctx.font = '16px Arial';
-  ctx.fillStyle = '#fff';
-  ctx.textAlign = 'center';
-  ctx.fillText(`Score: ${score}   Level: ${level}   Lines: ${linesCleared}`, canvas.width / 2, 20);
-
   drawMatrix(board, { x:0, y:0 });
   drawMatrix(currentPiece.matrix, currentPiece.pos);
 }
 
+// Drop the piece by one row
 function drop() {
   currentPiece.pos.y++;
   if (collides(board, [currentPiece.matrix, currentPiece.pos])) {
@@ -173,6 +164,7 @@ function drop() {
   dropCounter = 0;
 }
 
+// Move piece left or right
 function move(dir) {
   currentPiece.pos.x += dir;
   if (collides(board, [currentPiece.matrix, currentPiece.pos])) {
@@ -180,6 +172,7 @@ function move(dir) {
   }
 }
 
+// Rotate piece with collision check and wall kicks
 function rotatePiece() {
   const rotated = rotate(currentPiece.matrix);
   const posX = currentPiece.pos.x;
@@ -197,6 +190,7 @@ function rotatePiece() {
   }
 }
 
+// Game loop
 function update(time = 0) {
   if (isPaused) return;
 
@@ -209,6 +203,16 @@ function update(time = 0) {
 
   if (dropCounter > interval) {
     drop();
+  }
+
+  // Handle continuous left/right movement
+  if (moveLeft && time - lastMoveTime > moveInterval) {
+    move(-1);
+    lastMoveTime = time;
+  }
+  if (moveRight && time - lastMoveTime > moveInterval) {
+    move(1);
+    lastMoveTime = time;
   }
 
   draw();
@@ -245,9 +249,13 @@ window.addEventListener('focus', resumeGame);
 document.addEventListener('keydown', event => {
   if (event.repeat) return;
   if (event.key === 'ArrowLeft') {
-    move(-1);
+    moveLeft = true;
+    move(-1); // initial move
+    lastMoveTime = performance.now();
   } else if (event.key === 'ArrowRight') {
-    move(1);
+    moveRight = true;
+    move(1); // initial move
+    lastMoveTime = performance.now();
   } else if (event.key === 'ArrowDown') {
     dropFast = true;
   } else if (event.key === 'ArrowUp') {
@@ -256,7 +264,11 @@ document.addEventListener('keydown', event => {
 });
 
 document.addEventListener('keyup', event => {
-  if (event.key === 'ArrowDown') {
+  if (event.key === 'ArrowLeft') {
+    moveLeft = false;
+  } else if (event.key === 'ArrowRight') {
+    moveRight = false;
+  } else if (event.key === 'ArrowDown') {
     dropFast = false;
   }
 });
