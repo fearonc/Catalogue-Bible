@@ -67,15 +67,20 @@ function collide(arena, player) {
   const o = player.pos;
   for (let y = 0; y < m.length; ++y) {
     for (let x = 0; x < m[y].length; ++x) {
-      if (m[y][x] !== 0 &&
-          (arena[y + o.y] &&
-           arena[y + o.y][x + o.x]) !== 0) {
-        return true;
+      if (m[y][x] !== 0) {
+        if (
+          arena[y + o.y] === undefined || // outside bottom or top
+          arena[y + o.y][x + o.x] === undefined || // outside left or right
+          arena[y + o.y][x + o.x] !== 0 // cell occupied
+        ) {
+          return true;
+        }
       }
     }
   }
   return false;
 }
+
 
 function arenaSweep() {
   let rowCount = 1;
@@ -234,3 +239,4 @@ document.addEventListener('keyup', event => {
     moveDirection = 0;
   }
 });
+
