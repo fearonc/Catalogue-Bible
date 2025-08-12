@@ -257,6 +257,5 @@ document.getElementById('resetBtn').addEventListener('click', () => {
   initGame();
 });
 
-// Start game initially
-initGame();
-update();
+
+
