@@ -191,7 +191,7 @@ body {
 } */
 
 /* 2. Glassmorphism effect */
-.center-box, .sidebar {
+.center-box, .sidebar, .sidebar2, .sidebar3, .sidebar4 {
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -252,6 +252,7 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
