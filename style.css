@@ -78,6 +78,7 @@ body {
   gap: 20px;             /* Space between them */
   margin: 40px;          /* Space around the whole row */
   flex-wrap: wrap;       /* Optional: lets them wrap on smaller screens */
+  text-align: center;
 }
 
 
@@ -251,6 +252,7 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
