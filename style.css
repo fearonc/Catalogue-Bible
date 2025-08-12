@@ -3,28 +3,22 @@ html, body {
 }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  height: 100%;
   background-color: #f2f2f2; /* off-white/grey */
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 800px; /* Adjust size as needed */
-  opacity: 1; /* Keep full page visible */
+  
 }
 
-/* Fullscreen looping video */
+/* Fullscreen looping video at bottom layer */
 #bg-video {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* keeps aspect ratio while covering */
-  z-index: -2; /* bottom layer */
+  object-fit: cover;
+  z-index: -2; /* bottom-most */
 }
 
-/* Background image over the video */
+/* Logo image layer above video */
 #bg-image {
   position: fixed;
   top: 0;
@@ -34,9 +28,12 @@ body {
   background-image: url('EDIT%20Logo.png');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 800px; /* adjust as needed */
-  z-index: -1; /* sits above the video */
+  background-size: 800px;
+  z-index: -1; /* above video, below catalogue title */
 }
+
+/* Keep existing catalogue title & logo styling */
+
 
 
 .catalogue-logo {
@@ -245,6 +242,7 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
