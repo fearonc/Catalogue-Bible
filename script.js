@@ -34,6 +34,13 @@ document.addEventListener('mousemove', function(e) {
   }
 });
 
+  // Move "Catalogue" logo
+  const title = document.querySelector('.catalogue-logo');
+  if (title) {
+    title.style.transform = `translate(calc(-50% + ${xOffset}px), calc(-50% + ${yOffset}px))`;
+  }
+});
+
 
 
     // FAQ toggle
@@ -103,4 +110,5 @@ window.addEventListener("click", function(event) {
         modal.style.display = "none";
     }
 });
+
 
