@@ -24,15 +24,22 @@ document.addEventListener('mousemove', function(e) {
   const xOffset = (e.clientX / window.innerWidth - 0.5) * 20;
   const yOffset = (e.clientY / window.innerHeight - 0.5) * 20;
 
-  // Move background image
+  // Background
   document.body.style.backgroundPosition = `calc(50% + ${xOffset}px) calc(50% + ${yOffset}px)`;
 
-  // Move "Catalogue" title
+  // Catalogue title
   const title = document.querySelector('.catalogue-title');
   if (title) {
     title.style.transform = `translate(calc(-50% + ${xOffset}px), calc(-50% + ${yOffset}px))`;
   }
+
+  // Logo
+  const logo = document.querySelector('.catalogue-logo');
+  if (logo) {
+    logo.style.transform = `translate(calc(-50% + ${xOffset}px), calc(-50% + ${yOffset}px))`;
+  }
 });
+
 
 
 
@@ -103,6 +110,7 @@ window.addEventListener("click", function(event) {
         modal.style.display = "none";
     }
 });
+
 
 
 
