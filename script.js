@@ -25,7 +25,7 @@ document.addEventListener('mousemove', function(e) {
   const yOffset = (e.clientY / window.innerHeight - 0.5) * 20;
 
   // Move background image
-  document.body.style.backgroundPosition = `calc(50% + ${xOffset}px) calc(50% + ${yOffset}px)`;
+ // document.body.style.backgroundPosition = `calc(50% + ${xOffset}px) calc(50% + ${yOffset}px)`;
 
   // Move "Catalogue" title
   const title = document.querySelector('.catalogue-title');
@@ -110,5 +110,6 @@ window.addEventListener("click", function(event) {
         modal.style.display = "none";
     }
 });
+
 
 
