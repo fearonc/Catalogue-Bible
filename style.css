@@ -54,7 +54,7 @@ body {
   transform: translate(-50%, -50%);
   font-size: 65px;
   font-family: 'Segoe UI', sans-serif;
-  color: #333;
+  color: #000;
   text-align: center;
   z-index: 2; /* Ensures it's above background but below interactive elements */
   opacity: 1 !important;
@@ -242,6 +242,7 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
