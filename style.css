@@ -211,6 +211,26 @@ body {
   transition: opacity 1s ease-in;
 }
 
+
+/* All link states */
+a:link,
+a:visited {
+  color: #1a73e8;   /* your preferred color */
+  text-decoration: none; /* remove underline if you want */
+}
+
+/* Hover state */
+a:hover {
+  color: #0c54b3;   /* slightly darker on hover */
+  text-decoration: underline; /* optional */
+}
+
+/* Active state (while clicking) */
+a:active {
+  color: #1a73e8;
+}
+
+
 /* Tetris Bubble Styles */
 #tetris-bubble {
   position: fixed;
@@ -244,6 +264,7 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
