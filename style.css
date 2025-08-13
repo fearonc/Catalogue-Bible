@@ -42,7 +42,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px; /* Adjust size as needed */
-  z-index: 1;
+  z-index: 2;
   opacity: 0;
   transition: opacity 1s ease-in;
 }
@@ -56,7 +56,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   color: #333;
   text-align: center;
-  z-index: 1; /* Ensures it's above background but below interactive elements */
+  z-index: 2; /* Ensures it's above background but below interactive elements */
   opacity: 1 !important;
   transition: none !important;
 }
@@ -102,7 +102,7 @@ body {
 
 .sidebar, .sidebar2, .sidebar3, .sidebar4 {
   position: relative;  /* Add this */
-  z-index: 2;          /* Higher than 1 */
+  z-index: 3;          /* Higher than 1 */
   width: 250px;
   flex-shrink: 0;        /* Prevent shrinking */
   padding: 20px;
@@ -242,6 +242,7 @@ body {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
