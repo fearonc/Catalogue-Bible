@@ -128,7 +128,8 @@ let cursorIndex = 0;
 setInterval(() => {
   cursorIndex = (cursorIndex + 1) % cursors.length;
   document.body.style.cursor = `url(${cursors[cursorIndex]}) 0 0, auto`;
-}, 500);
+}, 1000);
+
 
 
 
