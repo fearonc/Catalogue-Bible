@@ -113,4 +113,23 @@ window.addEventListener("click", function(event) {
 
 
 
+// List of cursor images
+const cursors = [
+  'Aly.png',
+  'Connor.png',
+  'George.png',
+  'Katherine.png',
+  'Mike.png'
+];
+
+let cursorIndex = 0;
+
+document.addEventListener('click', () => {
+  // Move to the next cursor
+  cursorIndex = (cursorIndex + 1) % cursors.length;
+
+  // Apply it to the whole page
+  document.body.style.cursor = `url(${cursors[cursorIndex]}), auto`;
+});
+
 
