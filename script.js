@@ -117,19 +117,18 @@ window.addEventListener("click", function(event) {
 const cursors = [
   'Aly.png',
   'Connor.png',
-  'George.png',
   'Katherine.png',
-  'Mike.png'
+  'Mike.png',
+  'George.png'
 ];
 
 let cursorIndex = 0;
 
-document.addEventListener('click', () => {
-  // Move to the next cursor
+// Change cursor every 500ms
+setInterval(() => {
   cursorIndex = (cursorIndex + 1) % cursors.length;
+  document.body.style.cursor = `url(${cursors[cursorIndex]}) 0 0, auto`;
+}, 500);
 
-  // Apply it to the whole page
-  document.body.style.cursor = `url(${cursors[cursorIndex]}), auto`;
-});
 
 
