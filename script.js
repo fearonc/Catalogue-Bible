@@ -92,24 +92,24 @@ window.addEventListener('load', () => {
 
 
 
-function openTetris() {
-    document.getElementById("tetris-modal").style.display = "block";
-}
-
-function closeTetris() {
-    document.getElementById("tetris-modal").style.display = "none";
-}
-
-// When the bubble is clicked, open the game
-document.getElementById("tetris-bubble").addEventListener("click", openTetris);
-
-// Optional: Close if clicking outside modal
-window.addEventListener("click", function(event) {
-    let modal = document.getElementById("tetris-modal");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-});
+//function openTetris() {
+//    document.getElementById("tetris-modal").style.display = "block";
+//}
+//
+//function closeTetris() {
+//    document.getElementById("tetris-modal").style.display = "none";
+//}
+//
+//// When the bubble is clicked, open the game
+//document.getElementById("tetris-bubble").addEventListener("click", openTetris);
+//
+//// Optional: Close if clicking outside modal
+//window.addEventListener("click", function(event) {
+//    let modal = document.getElementById("tetris-modal");
+//    if (event.target === modal) {
+//        modal.style.display = "none";
+//    }
+//});
 
 
 
@@ -134,6 +134,7 @@ setInterval(() => {
   void body.offsetHeight; // trigger reflow
   body.style.pointerEvents = '';
 }, 1000);
+
 
 
 
