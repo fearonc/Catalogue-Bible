@@ -128,7 +128,13 @@ let cursorIndex = 0;
 setInterval(() => {
   cursorIndex = (cursorIndex + 1) % cursors.length;
   document.body.style.cursor = `url(${cursors[cursorIndex]}) 0 0, auto`;
+
+  // ⚡ force repaint hack
+  body.style.pointerEvents = 'none';
+  void body.offsetHeight; // trigger reflow
+  body.style.pointerEvents = '';
 }, 1000);
+
 
 
 
