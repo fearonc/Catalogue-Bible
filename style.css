@@ -3,6 +3,12 @@ html, body {
 }
 
 body {
+
+body {
+  cursor: url('George.png'), auto;
+}
+
+  
   margin: 0;
   font-family: Arial, sans-serif;
   height: 100%;
@@ -264,6 +270,7 @@ a:active {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
