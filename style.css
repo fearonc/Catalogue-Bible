@@ -4,7 +4,7 @@ html, body {
 
 body {
 
-  cursor: url('George.png'), auto; 
+  cursor: url('George.png'), auto;
   margin: 0;
   font-family: Arial, sans-serif;
   height: 100%;
@@ -14,6 +14,11 @@ body {
   background-position: center center;
   background-size: 800px; /* Adjust size as needed */
   opacity: 1; /* Keep full page visible */
+}
+
+/* ✅ Override link cursor */
+a, a:hover {
+  cursor: inherit !important;
 }
 
 #bg-video {
@@ -266,6 +271,7 @@ a:active {
   color: white;
   font-size: 1.5em;
 }
+
 
 
 
