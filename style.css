@@ -110,6 +110,16 @@ a, a:hover {
   text-align: center;
 }
 
+
+.sidebar ul {
+  columns: 2;       /* split into 2 columns */
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  column-gap: 2rem; /* space between columns */
+  list-style-position: inside; /* optional for nicer alignment */
+}
+
+
 .sidebar, .sidebar2, .sidebar3, .sidebar4 {
   position: relative;  /* Add this */
   z-index: 3;          /* Higher than 1 */
@@ -274,6 +284,7 @@ a:active {
   font-size: 1.5em;
 } 
 */
+
 
 
 
