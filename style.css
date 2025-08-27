@@ -106,6 +106,7 @@ a, a:hover {
   gap: 20px;             /* Space between them */
   margin: 40px;          /* Space around the whole row */
   flex-wrap: nowrap;     /* Prevent wrapping on smaller screens */
+   flex-shrink: 0;
   text-align: center;
 }
 
@@ -273,6 +274,7 @@ a:active {
   font-size: 1.5em;
 } 
 */
+
 
 
 
