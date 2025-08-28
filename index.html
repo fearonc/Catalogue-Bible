@@ -65,6 +65,32 @@
       color: green;
       font-style: italic;
     }
+
+.shooter-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000; /* stays on top of page content */
+}
+
+.shooter-controls button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.shooter-controls button:hover {
+  background: #333;
+  transform: scale(1.05);
+}
+
+	  
   </style>
 	<link rel="icon" href="scanner.png" type="image/png">
 
@@ -290,8 +316,14 @@
   </div>
 </div> -->
 	<script src="script.js"></script>
+	<!-- Shooter Game Button -->
+<div class="shooter-controls">
+  <button id="shooter-btn" onclick="toggleShooterGame()">Play Shooter Game</button>
+</div>
+
 </body>
 </html>
+
 
 
 
