@@ -42,6 +42,34 @@ document.addEventListener('mousemove', function(e) {
 
 
 
+//Kickass game
+(function () {
+  function launchShooterGame() {
+    // Prevent multiple loads
+    if (document.getElementById("kickass-game-script")) {
+      console.log("Shooter game already loaded.");
+      return;
+    }
+
+    // Create script element
+    const s = document.createElement("script");
+    s.src = "https://hi.kickassapp.com/kickass.js";
+    s.id = "kickass-game-script";
+    document.body.appendChild(s);
+  }
+
+  function stopShooterGame() {
+    // Reload page to reset everything
+    location.reload();
+  }
+
+  // Expose globally
+  window.launchShooterGame = launchShooterGame;
+  window.stopShooterGame = stopShooterGame;
+})();
+
+
+
 
     // FAQ toggle
     document.addEventListener('DOMContentLoaded', function () {
@@ -134,6 +162,7 @@ setInterval(() => {
   void body.offsetHeight; // trigger reflow
   body.style.pointerEvents = '';
 }, 1000);
+
 
 
 
