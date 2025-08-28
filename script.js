@@ -41,36 +41,6 @@ document.addEventListener('mousemove', function(e) {
 });
 
 
-
-//Kickass game
-(function () {
-  function launchShooterGame() {
-    // Prevent multiple loads
-    if (document.getElementById("kickass-game-script")) {
-      console.log("Shooter game already loaded.");
-      return;
-    }
-
-    // Create script element
-    const s = document.createElement("script");
-    s.src = "https://hi.kickassapp.com/kickass.js";
-    s.id = "kickass-game-script";
-    document.body.appendChild(s);
-  }
-
-  function stopShooterGame() {
-    // Reload page to reset everything
-    location.reload();
-  }
-
-  // Expose globally
-  window.launchShooterGame = launchShooterGame;
-  window.stopShooterGame = stopShooterGame;
-})();
-
-
-
-
     // FAQ toggle
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.faq-question').forEach(question => {
@@ -164,6 +134,44 @@ setInterval(() => {
 }, 1000);
 
 
+//Kickass game
+(function () {
+  let gameActive = false;
+
+  function launchShooterGame() {
+    if (document.getElementById("kickass-game-script")) {
+      console.log("Shooter game already loaded.");
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = "https://hi.kickassapp.com/kickass.js";
+    s.id = "kickass-game-script";
+    document.body.appendChild(s);
+    gameActive = true;
+    updateButton();
+  }
+
+  function stopShooterGame() {
+    location.reload(); // reset the page
+  }
+
+  function toggleShooterGame() {
+    if (gameActive) {
+      stopShooterGame();
+    } else {
+      launchShooterGame();
+    }
+  }
+
+  function updateButton() {
+    const btn = document.getElementById("shooter-btn");
+    if (!btn) return;
+    btn.textContent = gameActive ? "Stop Shooter Game" : "Play Shooter Game";
+  }
+
+  // Expose globally
+  window.toggleShooterGame = toggleShooterGame;
+})();
 
 
 
