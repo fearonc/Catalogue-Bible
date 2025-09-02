@@ -132,10 +132,13 @@
    <div class="sidebar2">
 		<br/><h2>Systems</h2>
 <ul>
+  <li><a href="https://servicedeskplus.thg.com/app/itdesk/HomePage.do" target="_blank" rel="noopener">Service Desk +</a></li>
   <li><a href="https://matrix.thgaccess.com/Matrix/#/product/" target="_blank" rel="noopener">Matrix</a></li>
-  <li><a href="https://tools.io.thehut.local/catalogue/#!/product/search" target="_blank" rel="noopener">Catalogue UI</a></li>
   <li><a href="https://thematrix.uat.io.thehut.local/Matrix/#/" target="_blank" rel="noopener">Matrix (UAT)</a></li>
+  <li><a href="https://thematrix.st.io.thehut.local/Matrix/#/" target="_blank" rel="noopener">Matrix (Stable)</a></li>
+  <li><a href="https://tools.io.thehut.local/catalogue/#!/product/search" target="_blank" rel="noopener">Catalogue UI</a></li>
   <li><a href="https://tools.uat.io.thehut.local/catalogue/#!/" target="_blank" rel="noopener">Catalogue UI (UAT)</a></li>
+  <li><a href="https://tools.st.io.thehut.local/catalogue/#!/login" target="_blank" rel="noopener">Catalogue UI (Stable)</a></li>
   <li><a href="https://gb4.externalproductservice.io.thehut.local/swagger-ui/index.html?configUrl=%2Fv3%2Fapi-docs%2Fswagger-config&urls.primaryName=internal#/" target="_blank" rel="noopener">Swagger</a></li>
 	<li><a href="https://keycloak3.thehut.net/auth/realms/ingenuity-tools/protocol/openid-connect/auth?client_id=hourglass&redirect_uri=https%3A%2F%2Fthghourglass.com%2Ftime-registration&state=d2f0e8b1-2da1-4df3-892b-14ce84f7e3ef&response_mode=fragment&response_type=code&scope=openid&nonce=0528f278-3b09-4f62-963a-7b9f3724c5da" target="_blank" rel="noopener">Hourglass</a></li>
 </ul>
@@ -152,7 +155,7 @@
 		 <br/><h2>Useful Contacts</h2>
 <ul>
   <li><a href="#" onclick="openModal('hsCodesModal'); return false;">HS Codes</a></li>
-  <li><a href="#" onclick="openModal('solutionsModal'); return false;">Solutions</a></li>
+  <li><a href="#" onclick="openModal('TechModal'); return false;">Tech</a></li>
   <li><a href="#" onclick="openModal('BBrandsModal'); return false;">Beauty Brands</a></li>
 </ul>
   </div>
@@ -233,24 +236,89 @@
   </div>
 </div>
 
-<!-- Solutions Contacts Modal -->
-<div id="solutionsModal" class="modal">
+<!-- Tech Contacts Modal -->
+<div id="TechModal" class="modal">
   <div class="modal-content">
-    <span class="close-button" onclick="closeModal('solutionsModal')">&times;</span>
+    <span class="close-button" onclick="closeModal('TechModal')">&times;</span>
     <table class="styled-table">
-      <caption>Solutions - dl-solutions@thehutgroup.com</caption>
+      <caption>Tech</caption>
 	<tbody>
 		<tr>
 			<th>Name</th>
 			<th>Role</th>
 			<th>Email</th>
 		</tr>
+		<h1>Solutions - dl-solutions@thehutgroup.com</h1>
+		<tr>
+			<td>Solutions</td>
+			<td>General solutions team</td>
+			<td>dl-solutions@thehutgroup.com</td>	
+		</tr>
 		<tr>
 			<td>Dennis Lund</td>
 			<td>Lead Solutions Consultant</td>
 			<td>dennis.lund@thgingenuity.com</td>	
 		</tr>
-		
+		<tr>
+			<td>Product Discovery</td>
+			<td>System issues and improvements</td>
+			<td>dl-product@thehutgroup.com</td>	
+		</tr>
+		<tr>
+			<td>Mihai Vrabie</td>
+			<td>Engineering Manager (Product Discovery)</td>
+			<td>mihai.vrabie@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Sharang Gupta</td>
+			<td>Software Engineer (Product Discovery)</td>
+			<td>sharang.gupta@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Paul Forshaw</td>
+			<td>Project Manager for Product Discovery</td>
+			<td>paul.forshaw04@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>BI (Business Intelligence)</td>
+			<td>Reporting</td>
+			<td>DL-BI@thehutgroup.com</td>	
+		</tr>
+			<tr>
+			<td>Asiam Shabbir</td>
+			<td>Data Manager - Commercial</td>
+			<td>asiam.shabbir@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Dan Leather</td>
+			<td>BI Teamm Leader</td>
+			<td>daniel.leather@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Jay Clarke</td>
+			<td>BI Engineer</td>
+			<td>jay.clarke@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Peter Harrop</td>
+			<td>Data Integrations Manager - Ingenuity Central - Technology</td>
+			<td>peter.harrop@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Supply Chain Devs</td>
+			<td>Stock Movement</td>
+			<td>dl-supplychaindev@thehutgroup.com</td>	
+		</tr>
+		<tr>
+			<td>FEDS (Front End Developers)</td>
+			<td>Front-end issues/solutions (On-site)</td>
+			<td>dl-feds@thehutgroup.com</td>	
+		</tr>
+		<tr>
+			<td>GOC (Global Operations Centre)</td>
+			<td>Systems and building access</td>
+			<td>globaloperationscentre@thehutgroup.com</td>	
+		</tr>
 	</tbody>
 </table>
   </div>
@@ -303,7 +371,7 @@
   </div>
 </div>
 	</div>
-
+	
 <!-- Floating Tetris Bubble -->
 <!-- <div id="tetris-bubble">Tetris</div> -->
 
@@ -323,6 +391,7 @@
 
 </body>
 </html>
+
 
 
 
