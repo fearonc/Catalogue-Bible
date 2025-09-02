@@ -163,6 +163,15 @@ a, a:hover {
   color: #333;
 }
 
+p.bold {
+  caption-side: top;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  color: #333;
+}
+
 .styled-table thead tr {
   background-color: #007bff;
   color: white;
@@ -284,6 +293,7 @@ a:active {
   font-size: 1.5em;
 } 
 */
+
 
 
 
