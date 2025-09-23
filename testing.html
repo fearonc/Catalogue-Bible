@@ -1,29 +1,419 @@
-<!DOCTYPE html>
-<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Javascript Stack Game</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="stylesheet" href="./style.css">
-<link rel="stylesheet" href="/css/styles.css">
+  <meta name="viewport" content="width=1200">
+  <title>Links</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      margin: 5% auto;
+      padding: 2em;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      width: 50%;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+
+    .close-button {
+      float: right;
+      font-size: 1.5em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      display: none;
+      font-style: italic;
+      margin-top: 0.5em;
+    }
+
+    .faq-item:nth-child(even) {
+      background-color: #f0f0f0;
+    }
+
+    .faq-item {
+      padding: 1em;
+      margin-bottom: 1em;
+      border-radius: 8px;
+    }
+
+    .label-q {
+      color: #c1e5f5;
+      font-weight: bold;
+    }
+
+    .label-a {
+      color: green;
+      font-style: italic;
+    }
+
+.shooter-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000; /* stays on top of page content */
+}
+
+.shooter-controls button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.shooter-controls button:hover {
+  background: #333;
+  transform: scale(1.05);
+}
+
+	  
+  </style>
+	<link rel="icon" href="scanner.png" type="image/png">
+
 </head>
 <body>
-	<div id="container">
-		<div id="game"></div>
-		<div id="score">0</div>
-		<div id="instructions">Click (or press the spacebar) to place the block</div>
-		<div class="game-over">
-			<h2>Game Over</h2>
-			<p>You did great, you're the best.</p>
-			<p>Click or spacebar to start again</p>
+<video autoplay muted loop playsinline id="bg-video">
+  <source src="Background%20Video.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
+	
+<img src="EDIT%20Logo.png" alt="Catalogue Logo" class="catalogue-logo">
+<h1 class="catalogue-title">Catalogue</h1>
+	
+<div class="fade-wrapper">
+<!--	<div class="fade-wrapper"> -->
+		<div class="sidebar-container">
+  <div class="sidebar">
+    <h2>Links</h2>
+    <ul>
+	<li><a href="testing.html" target="_blank" rel="noopener">TESTING PAGE</a></li>
+	<li><a href="https://hutgroupnorthwich.sharepoint.com/:f:/r/sites/ProductContent/Shared%20Documents/Catalogue?csf=1&web=1&e=OWjWll" target="_blank" rel="noopener">Catalogue Sharepoint</a></li>
+	<li><a href="https://hutgroupnorthwich.sharepoint.com/sites/ProductContent/Shared%20Documents/Forms/AllItems.aspx?viewid=4128d827%2D6556%2D4d55%2D9c5b%2D7e1c2d6112bf&csf=1&web=1&e=OWjWll&CID=23291c21%2Dcd50%2D43a2%2D9b90%2D109523480075&FolderCTID=0x012000E21A861F9CB3FC46AA6F8E449F61353E&id=%2Fsites%2FProductContent%2FShared%20Documents%2FCatalogue%2F1%2ENLF%20Passwords%2Etxt&parent=%2Fsites%2FProductContent%2FShared%20Documents%2FCatalogue" target="_blank" rel="noopener">NLF Passwords</a></li>
+	<li><a href="https://hutgroupnorthwich.sharepoint.com/:f:/r/sites/ProductContent/Shared%20Documents/Catalogue/Training%20Guides?csf=1&web=1&e=GRohDE" target="_blank" rel="noopener">Training Guides</a></li>
+	<li><a href="https://hutgroupnorthwich.sharepoint.com/:f:/r/sites/ProductContent/Shared%20Documents/Catalogue/Creation%20and%20Attribution%20Macros?csf=1&web=1&e=tIHXnP" target="_blank" rel="noopener">Creation and Attribution Macros</a></li>
+    <li><a href="https://hutgroupnorthwich.sharepoint.com/sites/NewLineForms/Shared%20Documents/Forms/AllItems.aspx?newTargetListUrl=%2Fsites%2FNewLineForms%2FShared%20Documents&viewpath=%2Fsites%2FNewLineForms%2FShared%20Documents%2FForms%2FAllItems%2Easpx&params=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIxNDE1LzIyMDUwMTAxMDA5In0%3D&viewid=17202b0b%2Ddb71%2D45f4%2D9495%2D91af61eb3953&OR=Teams%2DHL&CT=1726477869245&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI0OS8yNDA4MDIxMjAxMSIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D" target="_blank">All NLFs</a></li>
+   	<li><a href="https://hutgroupnorthwich.sharepoint.com/:f:/r/sites/ProductContent/Shared%20Documents/Catalogue/SQL?csf=1&web=1&e=cjgIzS" target="_blank" rel="noopener">SQL Folder</a></li>
+	<li><a href="https://hutgroupnorthwich.sharepoint.com/:x:/r/sites/ProductContent/Shared%20Documents/Catalogue/Barcode%20Master%20Sheet.xlsx?d=w318f752ed01d484da8ec081233765e67&csf=1&web=1&e=gjCuU1" target="_blank" rel="noopener">Barcode Master Sheet</a></li>
+	<li><a href="https://hutgroupnorthwich.sharepoint.com/:x:/r/sites/ProductContent/_layouts/15/Doc.aspx?sourcedoc=%7Bfea30ee9-8954-4581-beb4-24e2d979eece%7D&action=edit&wdPreviousSession=1cf1519b-5562-473d-82bd-313abdc95a59&wdOrigin=TEAMS-MAGLEV.p2p_ns.rwc&wdExp=TEAMS-TREATMENT&wdhostclicktime=1722865369440&web=1" target="_blank" rel="noopener">Beauty Brand List</a></li>
+	<li><a href="https://hutgroupnorthwich-my.sharepoint.com/:x:/g/personal/petersk_thehutgroup_com/EUI4WkNXMx1MtMt5clwylWIBIfHffKxW93HdFM-1cWxF4w?e=c3kEiI" target="_blank" rel="noopener">Beauty Priority Board</a></li>
+	<li><a href="https://hutgroupnorthwich.sharepoint.com/sites/ProductContent/SitePages/Display-Text.aspx?xsdata=MDV8MDJ8fGI4MDdjNTk0YzUwYjQzNGFkOGMyMDhkY2QwZDA5NjdkfDIzM2IwMTNiZDgzZTRmN2E4NmZmZjJlNGU3ZTY5NDZifDB8MHw2Mzg2MTQ4NDE0NzYzNzI2NzR8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT18MXxMMk5vWVhSekx6RTVPalJsT1daall6UTFMVGd3TURRdE5ETXdaQzFoWW1RNExURTBOMkk1Tnprek1HWTNZbDg1TkRsbVlXTmxNeTAwWXpNM0xUUm1ZVGd0T0RSaE1DMHdNemMwTjJVNE9UazRNamRBZFc1eExtZGliQzV6Y0dGalpYTXZiV1Z6YzJGblpYTXZNVGN5TlRnNE56TTBOalU0Tnc9PXwzYzQ1MDhjYTc1ZmE0ZjE1ZDhjMjA4ZGNkMGQwOTY3ZHxkNTFhZGUyMDdiMDE0MjM1ODNhOWY1NGRhMWVhNDVhNQ%3D%3D&sdata=WE1QclVJb1Q3NWZ6WFdrMG8xQjZIZ3VlUUdodElvRVpRYXlFTEFIcFAzZz0%3D&ovuser=233b013b-d83e-4f7a-86ff-f2e4e7e6946b%2Cfearonc%40thehutgroup.com&OR=Teams-HL&CT=1725887361892&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI0OS8yNDA4MDIxMjAwOCIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D" target="_blank" rel="noopener">Display Text Sharepoint page</a></li>
+	<li><a href="https://www.gs1.org/services/check-digit-calculator" target="_blank" rel="noopener">GS1 Check website</a></li>
+	<li><a href="https://galaxy.io.thehut.local/marskey" target="_blank" rel="noopener">Mars Keys</a></li>
+	<li><a href="http://gb4.k8s.marsreader-secondary.io.thehut.local/mars-reader/product/marskey/mypGB/id/10798885/medium" target="_blank" rel="noopener">Mars SKU Data</a></li>
+	<li><a href="https://fearonc.github.io/Catalogue-Links/index.html" target="_blank" rel="noopener">Traders' Catalogue Bible</a></li>
+	</ul>
+  </div>
+ <!--  <br/><h2>FAQ</h2>
+    <ul>
+      <li><a href="#" onclick="openFAQ(); return false;">View FAQ</a></li>
+    </ul> --> 
+   <div class="sidebar2">
+		<br/><h2>Systems</h2>
+<ul>
+  <li><a href="https://servicedeskplus.thg.com/app/itdesk/HomePage.do" target="_blank" rel="noopener">Service Desk +</a></li>
+  <li><a href="https://matrix.thgaccess.com/Matrix/#/product/" target="_blank" rel="noopener">Matrix</a></li>
+  <li><a href="https://thematrix.uat.io.thehut.local/Matrix/#/" target="_blank" rel="noopener">Matrix (UAT)</a></li>
+  <li><a href="https://thematrix.st.io.thehut.local/Matrix/#/" target="_blank" rel="noopener">Matrix (Stable)</a></li>
+  <li><a href="https://tools.io.thehut.local/catalogue/#!/product/search" target="_blank" rel="noopener">Catalogue UI</a></li>
+  <li><a href="https://tools.uat.io.thehut.local/catalogue/#!/" target="_blank" rel="noopener">Catalogue UI (UAT)</a></li>
+  <li><a href="https://tools.st.io.thehut.local/catalogue/#!/login" target="_blank" rel="noopener">Catalogue UI (Stable)</a></li>
+  <li><a href="https://gb1.product-tools.k8s.io.thehut.local/PSTools/swagger-ui/index.html#/product-controller-impl/refreshProductOnAllMarsKey" target="_blank" rel="noopener">Swagger SKU Refresh</a></li>
+	<li><a href="https://galaxy.io.thehut.local/swagger-ui/index.html#/Events/productRefresh" target="_blank" rel="noopener">Swagger SKU Refresh with Mars Key</a></li>
+	<li><a href="https://keycloak3.thehut.net/auth/realms/ingenuity-tools/protocol/openid-connect/auth?client_id=hourglass&redirect_uri=https%3A%2F%2Fthghourglass.com%2Ftime-registration&state=d2f0e8b1-2da1-4df3-892b-14ce84f7e3ef&response_mode=fragment&response_type=code&scope=openid&nonce=0528f278-3b09-4f62-963a-7b9f3724c5da" target="_blank" rel="noopener">Hourglass</a></li>
+</ul>
+   </div>
+		<div class="sidebar3">
+	   <br/><h2>Ingenuity Specific</h2>
+<ul>
+  <li><a href="https://tableconvert.com/excel-to-html" target="_blank" rel="noopener">Size Guide Table builder</a></li>
+  <li><a href="https://hutgroupnorthwich.sharepoint.com/:f:/r/sites/Content-Ingenuity/Shared%20Documents/New%20NLFs%20-%20BAU?csf=1&web=1&e=qG5Enb" target="_blank" rel="noopener">Content NLF's</a></li>
+  <li><a href="https://hutgroupnorthwich.sharepoint.com/:x:/s/SupplierContent/ERRf9XpfLxtJtNDlVKPXEvcBN0PUl2sVQNMOzGsnyUcHZA?email=Connor.Fearon%40thehutgroup.com&e=4%3AifYjoI&at=9&CID=B1627456-9388-4B05-9CAE-F02A85ADCEDD&wdLOR=c1CCBC389-5F07-45A2-8AE3-11A3D0EB69EC" target="_blank" rel="noopener">Ingenuity Bible</a></li>
+</ul>
 		</div>
-		<div class="game-ready">
-			<div id="start-button">Start</div>
-			<div></div>
-		</div>
+		<div class="sidebar4">
+		 <br/><h2>Useful Contacts</h2>
+<ul>
+  <li><a href="#" onclick="openModal('hsCodesModal'); return false;">HS Codes</a></li>
+  <li><a href="#" onclick="openModal('TechModal'); return false;">Tech</a></li>
+  <li><a href="#" onclick="openModal('BBrandsModal'); return false;">Beauty Brands</a></li>
+</ul>
+  </div>
 	</div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
-  <script src="/js/main.js"></script>
-  </body>
+	</div>
+
+
+
+  <!-- Modal FAQ Content 
+  <div id="faqModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeFAQ()">&times;</span>
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> What is the difference between Master/Child and Linked SKUs?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> Master/Child (Complex SKUs) = A single product displayed on list pages using the master SKU, with the child SKUs creating the drop down options on the PDP. Child SKUs have barcodes and hold stock in the warehouse, Master SKUs have no barcode and are purely for displaying the PDP on-site.<br/><br/>Linked SKUs = 2 or more completely separate SKUs which each appear individually on list pages, but have a “link” to the other SKUs within the linked group. Linked SKUs can be 2 or more Non-Complex SKUs, or 2 or more Master SKUs.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> Can I have more than one barcode on a SKU?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> Yes! We can load multiple barcodes to one THG SKU. The Catalogue and Warehouse systems are designed to work this way.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> Why is a Product not displaying on site?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> This can be a number of reasons:
+          <ul>
+            <li>It’s not assigned to site in Catalogue</li>
+            <li>The Availability in TeePee hasn’t been set correctly</li>
+            <li>The product has no stock and the site assignment is on “Show when available”</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> Why is a product not on a list page?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> This will depend on how the list page is setup in TeePee. It will be an issue of the SKU not having the correct Attribution that the list page (DDL) is looking for.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> How do I update a brand Key?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> We don’t deal with brand Key’s directly. We require the brand name to load, which will have its own key assigned in the system, so only provide the brand itself, not a key.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"><span class="label-q">Q:</span> How can I search for an existing SKU?</div>
+        <div class="faq-answer"><span class="label-a">A:</span> You can use Catalogue UI to search for existing SKUs, Title, Barcode, Catalogue numbers.<br/>Don’t use Tabernus to search for products as it is outdated and unreliable.</div>
+      </div>
+    </div>
+  </div>
+-->
+
+<!-- HS Codes Contacts Modal -->
+<div id="hsCodesModal" class="modal">
+<div class="modal-content">
+    <span class="close-button" onclick="closeModal('hsCodesModal')">&times;</span>
+    <table class="styled-table">
+      <caption>HS Codes Contacts - hs.codes@thehutgroup.com</caption>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>Zoe Scott</td>
+			<td>Customs Classification Officer</td>
+			<td>zoe.scott@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Dale Walker</td>
+			<td>Dangerous Goods Manager</td>
+			<td>dale.walker@thgingenuity.com</td>	
+		</tr>		
+	</tbody>
+</table>
+  </div>
+</div>
+
+<!-- Tech Contacts Modal -->
+<div id="TechModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal('TechModal')">&times;</span>
+   <h1>Tech</h1>
+	  <table class="styled-table">
+ <caption>Solutions - dl-solutions@thehutgroup.com (General solutions team)</caption>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>Dennis Lund</td>
+			<td>Lead Solutions Consultant</td>
+			<td>dennis.lund@thgingenuity.com</td>	
+		</tr>
+			</tbody>
+</table>
+
+	   <table class="styled-table">
+ <caption>Product Discovery - dl-product@thehutgroup.com (System issues and improvements)</caption>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>Mihai Vrabie</td>
+			<td>Engineering Manager (Product Discovery)</td>
+			<td>mihai.vrabie@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Sharang Gupta</td>
+			<td>Software Engineer (Product Discovery)</td>
+			<td>sharang.gupta@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Paul Forshaw</td>
+			<td>Project Manager for Product Discovery</td>
+			<td>paul.forshaw04@thgingenuity.com</td>	
+		</tr>
+		</tbody>
+</table>
+
+	    <table class="styled-table">
+			<caption>BI (Business Intelligence) - dl-bi@thehutgroup.com (Reporting)</caption>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Email</th>
+		</tr>
+			<tr>
+			<td>Asiam Shabbir</td>
+			<td>Data Manager - Commercial</td>
+			<td>asiam.shabbir@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Dan Leather</td>
+			<td>BI Team Leader</td>
+			<td>daniel.leather@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Jay Clarke</td>
+			<td>BI Engineer</td>
+			<td>jay.clarke@thgingenuity.com</td>	
+		</tr>
+		<tr>
+			<td>Peter Harrop</td>
+			<td>Data Integrations Manager - Ingenuity Central - Technology</td>
+			<td>peter.harrop@thgingenuity.com</td>	
+		</tr>
+	</tbody>
+</table>
+	  
+			<p class="bold">Supply Chain Devs  -  dl-supplychaindev@thehutgroup.com  (Stock Movement)</p>
+				<p class="bold">FEDS  -  dl-feds@thehutgroup.com  (Front-end issues/solutions (On-site))</p>
+				<p class="bold">GOC  -  globaloperationscentre@thehutgroup.com  (Systems and building access)</p>
+
+  </div>
+</div>
+
+<!-- Beauty Brands Contacts Modal -->
+<div id="BBrandsModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal('BBrandsModal')">&times;</span>
+    <table class="styled-table">
+      <caption>Beauty Brands - For Batch and Expiry/SMC approval</caption>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>Sean Keeley</td>
+			<td>Head Of Supply Chain</td>
+			<td>sean.keeley@thg.com</td>	
+		</tr>
+		<tr>
+			<td>Natalie Williams (When Sean is OOO)</td>
+			<td>Supply Chain Manager</td>
+			<td>natalie.williams@thg.com</td>	
+		</tr>
+		<tr>
+			<td>Jake Nightingale</td>
+			<td>Compliance for PMD, Eyeko, Illa, Mio</td>
+			<td>jake.nightingale@thg.com</td>	
+		</tr>
+		<tr>
+			<td>Lily youngs-Taylor</td>
+			<td>Compliance for Biossance & Glossybox</td>
+			<td>lily.youngstaylor@thg.com</td>	
+		</tr>
+		<tr>
+			<td>Robyn Wilson</td>
+			<td>Compliance for Christoph Robin & Grow Gorgeous</td>
+			<td>robyn.wilson05@thg.com</td>	
+		</tr>
+		<tr>
+			<td>Victoria Ubesio</td>
+			<td>Compliance for Ameliorate</td>
+			<td>victoria.ubesio95@thg.com</td>	
+		</tr>
+	</tbody>
+</table>
+  </div>
+</div>
+	</div>
+	
+<!-- Floating Tetris Bubble -->
+<!-- <div id="tetris-bubble">Tetris</div> -->
+
+<!-- Tetris Modal 
+<div id="tetris-modal" class="modal" style="display:none;">
+  <div class="modal-content" style="width: fit-content; max-width: 90%;">
+    <span class="close-button" onclick="closeTetris()">&times;</span>
+ 	  <iframe src="tetris/index.html" width="400" height="600" style="border:none;"></iframe>
+
+  </div>
+</div> -->
+	<script src="script.js"></script>
+	<!-- Shooter Game Button -->
+<div class="shooter-controls">
+  <button id="shooter-btn" onclick="toggleShooterGame()">Play Shooter Game</button>
+</div>
+
+</body>
 </html>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
