@@ -175,5 +175,34 @@ setInterval(() => {
 
 
 
+// Konami code sequence
+const konami = [
+  "ArrowUp", "ArrowUp",
+  "ArrowDown", "ArrowDown",
+  "ArrowLeft", "ArrowRight",
+  "ArrowLeft", "ArrowRight",
+  "b", "a"
+];
+let position = 0;
+
+document.addEventListener("keydown", (e) => {
+  // Prevent scrolling when using arrow keys during sequence
+  if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+    e.preventDefault();
+  }
+
+  // Check the current key against the sequence
+  if (e.key === konami[position]) {
+    position++;
+    if (position === konami.length) {
+      // Open the URL in a new tab
+      window.open("https://js-gra.netlify.app/", "_blank");
+      position = 0;
+    }
+  } else {
+    position = 0; // reset if wrong key
+  }
+});
+
 
 
