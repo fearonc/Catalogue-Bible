@@ -13,7 +13,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development',
-      template: __dirname + '/src/html/index.html',
+      template: __dirname + 'Mary%20Brave/src/html/index.html',
       inject: 'body',
       filename: 'index.html'
     })
@@ -44,4 +44,5 @@ module.exports = {
       }, 'css-loader']
     }]
   }
+
 }
