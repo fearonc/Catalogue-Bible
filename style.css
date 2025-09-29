@@ -317,7 +317,7 @@ background: transparent;
   top: 40px;
   left: 1015px;
 }
-.invisible-box[data-modal="Jill"] {
+/* .invisible-box[data-modal="Jill"] {
   top: 300px;
   left: 200px;
 }
@@ -326,7 +326,7 @@ background: transparent;
   left: 150px;
 }
 
-
+*/
 
 /* Modal backdrop */
 .modal {
@@ -389,6 +389,7 @@ background: transparent;
   from {opacity: 0; transform: translateY(-20px);}
   to {opacity: 1; transform: translateY(0);}
 }
+
 
 
 
