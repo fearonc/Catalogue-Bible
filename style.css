@@ -301,6 +301,31 @@ a:active {
 
 
 
+.invisible-box {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+/*  background: transparent; */
+  background: rgba(255,0,0,0.2);
+
+  z-index: 10;
+}
+
+/* Position them individually */
+.invisible-box[data-modal="Jack"] {
+  top: 78px;
+  left: 1858px;
+}
+.invisible-box[data-modal="Jill"] {
+  top: 300px;
+  left: 200px;
+}
+.invisible-box[data-modal="Hill"] {
+  top: 500px;
+  left: 150px;
+}
+
 
 
 
