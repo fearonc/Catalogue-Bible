@@ -220,3 +220,44 @@ document.querySelectorAll(".invisible-box").forEach(box => {
 
 
 
+// Setup modal trigger
+document.querySelectorAll(".invisible-box").forEach(box => {
+  box.addEventListener("click", () => {
+    const modalId = box.getAttribute("data-modal");
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = "block";
+
+      // Get audio element
+      const audio = modal.querySelector("audio");
+
+      // Play audio after 2 second delay
+      setTimeout(() => {
+        audio.currentTime = 0;
+        audio.play();
+      }, 2000);
+
+      // Restart button
+      const restartBtn = modal.querySelector("#restart-audio");
+      restartBtn.onclick = () => {
+        audio.currentTime = 0;
+        audio.play();
+      };
+
+      // Close when clicking X
+      modal.querySelector(".close").onclick = () => {
+        modal.style.display = "none";
+        audio.pause();
+      };
+
+      // Close when clicking outside modal content
+      modal.onclick = (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+          audio.pause();
+        }
+      };
+    }
+  });
+});
+
