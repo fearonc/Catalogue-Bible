@@ -207,57 +207,52 @@ document.addEventListener("keydown", (e) => {
 
 
 
-//Invisible box modals script
+// Invisible box modals with audio support
 document.querySelectorAll(".invisible-box").forEach(box => {
   box.addEventListener("click", () => {
     const modalId = box.getAttribute("data-modal");
     const modal = document.getElementById(modalId);
-    if (modal) {
-      modal.style.display = "block"; // or your modal open function
-    }
-  });
-});
+    if (!modal) return;
 
+    // Show modal
+    modal.style.display = "block";
 
-
-// Setup modal trigger
-document.querySelectorAll(".invisible-box").forEach(box => {
-  box.addEventListener("click", () => {
-    const modalId = box.getAttribute("data-modal");
-    const modal = document.getElementById(modalId);
-    if (modal) {
-      modal.style.display = "block";
-
-      // Get audio element
-      const audio = modal.querySelector("audio");
-
-      // Play audio after 2 second delay
+    // Grab audio element inside this modal
+    const audio = modal.querySelector("audio");
+    if (audio) {
+      // Reset & play after 2s delay
       setTimeout(() => {
         audio.currentTime = 0;
-        audio.play();
+        audio.play().catch(err => console.log("Audio play blocked:", err));
       }, 2000);
 
-      // Restart button
-      const restartBtn = modal.querySelector("#restart-audio");
-      restartBtn.onclick = () => {
-        audio.currentTime = 0;
-        audio.play();
-      };
+      // Hook up restart button inside THIS modal
+      const restartBtn = modal.querySelector(".restart-audio");
+      if (restartBtn) {
+        restartBtn.onclick = () => {
+          audio.currentTime = 0;
+          audio.play();
+        };
+      }
+    }
 
-      // Close when clicking X
-      modal.querySelector(".close").onclick = () => {
+    // Close on [x]
+    const closeBtn = modal.querySelector(".close");
+    if (closeBtn) {
+      closeBtn.onclick = () => {
         modal.style.display = "none";
-        audio.pause();
-      };
-
-      // Close when clicking outside modal content
-      modal.onclick = (e) => {
-        if (e.target === modal) {
-          modal.style.display = "none";
-          audio.pause();
-        }
+        if (audio) audio.pause();
       };
     }
+
+    // Close on backdrop click
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+        if (audio) audio.pause();
+      }
+    }, { once: true }); // prevent multiple bindings
   });
 });
+
 
