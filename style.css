@@ -303,8 +303,8 @@ a:active {
 
 .invisible-box {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
 /*  background: transparent; */
   background: rgba(255,0,0,0.2);
@@ -314,8 +314,8 @@ a:active {
 
 /* Position them individually */
 .invisible-box[data-modal="Jack"] {
-  top: 78px;
-  left: 1858px;
+  top: 40px;
+  left: 1015px;
 }
 .invisible-box[data-modal="Jill"] {
   top: 300px;
@@ -389,6 +389,7 @@ a:active {
   from {opacity: 0; transform: translateY(-20px);}
   to {opacity: 1; transform: translateY(0);}
 }
+
 
 
 
