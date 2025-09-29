@@ -113,11 +113,11 @@ window.addEventListener('load', () => {
 
 // List of cursor images
 const cursors = [
-  'Aly.png',
-  'Connor.png',
-  'Katherine.png',
-  'Mike.png',
-  'George.png'
+  'Assets/Aly.png',
+  'Assets/Connor.png',
+  'Assets/Katherine.png',
+  'Assets/Mike.png',
+  'Assets/George.png'
 ];
 
 let cursorIndex = 0;
@@ -203,6 +203,7 @@ document.addEventListener("keydown", (e) => {
     position = 0; // reset if wrong key
   }
 });
+
 
 
 
