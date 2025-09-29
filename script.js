@@ -207,3 +207,16 @@ document.addEventListener("keydown", (e) => {
 
 
 
+//Invisible box modals script
+document.querySelectorAll(".invisible-box").forEach(box => {
+  box.addEventListener("click", () => {
+    const modalId = box.getAttribute("data-modal");
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = "block"; // or your modal open function
+    }
+  });
+});
+
+
+
