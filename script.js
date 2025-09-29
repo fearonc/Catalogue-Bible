@@ -207,51 +207,53 @@ document.addEventListener("keydown", (e) => {
 
 
 
-// Invisible box modals with audio support
-document.querySelectorAll(".invisible-box").forEach(box => {
-  box.addEventListener("click", () => {
-    const modalId = box.getAttribute("data-modal");
-    const modal = document.getElementById(modalId);
-    if (!modal) return;
+document.addEventListener("DOMContentLoaded", () => {
+  // Invisible box modals with audio support
+  document.querySelectorAll(".invisible-box").forEach(box => {
+    box.addEventListener("click", () => {
+      const modalId = box.getAttribute("data-modal");
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
 
-    // Show modal
-    modal.style.display = "block";
+      // Show modal
+      modal.style.display = "block";
 
-    // Grab audio element inside this modal
-    const audio = modal.querySelector("audio");
-    if (audio) {
-      // Reset & play after 2s delay
-      setTimeout(() => {
-        audio.currentTime = 0;
-        audio.play().catch(err => console.log("Audio play blocked:", err));
-      }, 2000);
-
-      // Hook up restart button inside THIS modal
-      const restartBtn = modal.querySelector(".restart-audio");
-      if (restartBtn) {
-        restartBtn.onclick = () => {
+      // Grab audio element inside this modal
+      const audio = modal.querySelector("audio");
+      if (audio) {
+        // Reset & play after 2s delay
+        setTimeout(() => {
           audio.currentTime = 0;
-          audio.play();
+          audio.play().catch(err => console.log("Audio play blocked:", err));
+        }, 2000);
+
+        // Hook up restart button inside THIS modal
+        const restartBtn = modal.querySelector(".restart-audio");
+        if (restartBtn) {
+          restartBtn.onclick = () => {
+            audio.currentTime = 0;
+            audio.play();
+          };
+        }
+      }
+
+      // Close on [x]
+      const closeBtn = modal.querySelector(".close");
+      if (closeBtn) {
+        closeBtn.onclick = () => {
+          modal.style.display = "none";
+          if (audio) audio.pause();
         };
       }
-    }
 
-    // Close on [x]
-    const closeBtn = modal.querySelector(".close");
-    if (closeBtn) {
-      closeBtn.onclick = () => {
-        modal.style.display = "none";
-        if (audio) audio.pause();
-      };
-    }
-
-    // Close on backdrop click
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
-        if (audio) audio.pause();
-      }
-    }, { once: true }); // prevent multiple bindings
+      // Close on backdrop click
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+          if (audio) audio.pause();
+        }
+      }, { once: true }); // prevent multiple bindings
+    });
   });
 });
 
