@@ -225,7 +225,8 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           audio.currentTime = 0;
           audio.play().catch(err => console.log("Audio play blocked:", err));
-        }, 2000);
+      //  }, 2000);
+         }, 1);
 
         // Hook up restart button inside THIS modal
         const restartBtn = modal.querySelector(".restart-audio");
@@ -256,5 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
 
