@@ -17,16 +17,17 @@
       background-color: rgba(0,0,0,0.6);
     }
 
-    .modal-content {
-      background-color: #ffffff;
-      margin: 5% auto;
-      padding: 2em;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      width: 50%;
-      max-height: 80%;
-      overflow-y: auto;
-    }
+.modal-content {
+  background-color: #ffffff;
+  margin: 5% auto;
+  padding: 2em;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  width: auto;          /* Let content define width */
+  max-width: 80vw;      /* But don't go wider than the screen */
+  max-height: 80vh;     /* Keep height under control */
+  overflow-y: auto;     /* Scroll only vertically */
+}
 
     .close-button {
       float: right;
@@ -422,6 +423,7 @@
 	
 </body>
 </html>
+
 
 
 
